@@ -785,64 +785,75 @@
     <section class="blog" id="blog">
         <div class="blog-container">
             <h2 class="section-title">Road Design Resources</h2>
+            
+            <!-- Download Complete Reference Button -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <a href="AASHTO_Pavement_Design_Reference.pdf" download class="primary-btn" style="display: inline-block; text-decoration: none;">
+                    📥 Download Complete Reference Guide (PDF)
+                </a>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">
+                    All 6 AASHTO design references in one document
+                </p>
+            </div>
+            
             <div class="blog-grid">
                 <div class="blog-card">
-                    <div class="blog-image">🛣️</div>
+                    <div class="blog-image">📖</div>
                     <div class="blog-content">
-                        <span class="blog-tag">Fundamentals</span>
-                        <h3>Understanding AASHTO Pavement Design</h3>
-                        <p>The AASHTO method is the most widely used empirical design procedure for flexible pavements. It considers traffic loading, environmental conditions, and material properties to determine required structural numbers.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <span class="blog-tag">Reference</span>
+                        <h3>Initial & Terminal Serviceability</h3>
+                        <p>Understanding serviceability indexes (Pi and Pt) - the measure of pavement condition from initial construction quality to terminal acceptable condition. Typical values: Pi = 4.2 for flexible pavements, Pt = 2.0-2.5 for major highways.</p>
+                        <a href="Initial_Serviceability.jpg" target="_blank" class="read-more">View Reference →</a>
                     </div>
                 </div>
 
                 <div class="blog-card">
                     <div class="blog-image">📊</div>
                     <div class="blog-content">
-                        <span class="blog-tag">Technical</span>
-                        <h3>Structural Number Calculation</h3>
-                        <p>The structural number (SN) represents the overall structural capacity of a pavement. It's calculated as the sum of layer coefficients multiplied by drainage factors and thicknesses: SN = Σ(a × m × D).</p>
-                        <a href="#" class="read-more">Read more →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">🔬</div>
-                    <div class="blog-content">
-                        <span class="blog-tag">Materials</span>
-                        <h3>Layer Coefficients & Drainage</h3>
-                        <p>Layer coefficients (a) reflect material strength - asphalt typically ranges from 0.35-0.44, while base courses are 0.10-0.14. Drainage coefficients (m) account for moisture conditions and drainage quality.</p>
-                        <a href="#" class="read-more">Read more →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">🚧</div>
-                    <div class="blog-content">
-                        <span class="blog-tag">Best Practices</span>
-                        <h3>Subgrade Characterization</h3>
-                        <p>Accurate subgrade assessment through CBR testing is critical. The resilient modulus (Mr) can be estimated as CBR × 1500 psi for fine-grained soils, providing the foundation for pavement thickness design.</p>
-                        <a href="#" class="read-more">Read more →</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-image">📈</div>
-                    <div class="blog-content">
-                        <span class="blog-tag">Analysis</span>
-                        <h3>Traffic Loading & ESALs</h3>
-                        <p>Equivalent Single Axle Loads (ESALs) convert mixed traffic into an equivalent number of standard 18-kip axle loads. This crucial parameter drives the required structural capacity over the design life.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <span class="blog-tag">Reference</span>
+                        <h3>Standard Deviation (So)</h3>
+                        <p>Standard deviation values for design reliability analysis. Suggested values: So = 0.49 for flexible pavements, 0.39 for rigid pavements. Essential for accounting for uncertainties in traffic predictions and pavement performance.</p>
+                        <a href="Standard_Deviation.jpg" target="_blank" class="read-more">View Reference →</a>
                     </div>
                 </div>
 
                 <div class="blog-card">
                     <div class="blog-image">🎯</div>
                     <div class="blog-content">
-                        <span class="blog-tag">Design</span>
-                        <h3>Reliability & Serviceability</h3>
-                        <p>Design reliability (typically 85-99.9%) accounts for uncertainty in traffic and material properties. The change in serviceability (ΔPSI) from initial to terminal conditions defines acceptable pavement deterioration.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <span class="blog-tag">Reference</span>
+                        <h3>Reliability Levels (R) & Zr</h3>
+                        <p>Recommended reliability levels for different functional classifications. Interstate: 85-99.9%, Principal arterials: 80-99%, Collectors: 80-95%, Local: 50-80%. Includes standard normal deviate (Zr) conversion table.</p>
+                        <a href="Reliability_R.jpg" target="_blank" class="read-more">View Reference →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🔬</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Reference</span>
+                        <h3>Resilient Modulus (Mr) Calculation</h3>
+                        <p>CBR to resilient modulus correlations and empirical relationships. Formula: Mr = 1500 × CBR (for fine-grained soils). Includes comparison tables for different soil types and testing methods.</p>
+                        <a href="Resilient_Modulus_Mr.jpg" target="_blank" class="read-more">View Reference →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">💧</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Reference</span>
+                        <h3>Drainage Coefficients (m)</h3>
+                        <p>Recommended drainage coefficients for untreated bases and subbases. Quality ratings from Excellent (m = 1.40-1.35) to Very poor (m = 0.40). Based on water removal time and moisture exposure percentage.</p>
+                        <a href="Drainage_Coefficient.jpg" target="_blank" class="read-more">View Reference →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">📐</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Reference</span>
+                        <h3>AASHTO Design Equations</h3>
+                        <p>Complete AASHTO flexible pavement design equations including structural number (SN) calculation, serviceability concepts, and the relationship between traffic loading, material properties, and layer thicknesses.</p>
+                        <a href="Terminal_Serviceability.jpg" target="_blank" class="read-more">View Reference →</a>
                     </div>
                 </div>
             </div>
@@ -878,28 +889,28 @@
                     <div class="input-group">
                         <label for="zr">Standard Normal Deviate (Zr)</label>
                         <div class="input-wrapper">
-                            <input type="number" id="zr" step="0.001" value="-1.282" placeholder="Enter Zr">
+                            <input type="number" id="zr" step="0.001" value="-1.282" placeholder="Enter Zr" oninput="calculate()">
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label for="so">Overall Standard Deviation (So)</label>
                         <div class="input-wrapper">
-                            <input type="number" id="so" step="0.01" value="0.45" placeholder="Enter So">
+                            <input type="number" id="so" step="0.01" value="0.45" placeholder="Enter So" oninput="calculate()">
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label for="deltaPSI">Change in Serviceability (ΔPSI)</label>
                         <div class="input-wrapper">
-                            <input type="number" id="deltaPSI" step="0.1" value="2.2" placeholder="Enter ΔPSI">
+                            <input type="number" id="deltaPSI" step="0.1" value="2.2" placeholder="Enter ΔPSI" oninput="calculate()">
                         </div>
                     </div>
 
                     <div class="input-group">
                         <label for="cbr">CBR (California Bearing Ratio)</label>
                         <div class="input-wrapper">
-                            <input type="number" id="cbr" step="0.1" value="10" placeholder="Enter CBR" oninput="updateMr()">
+                            <input type="number" id="cbr" step="0.1" value="" placeholder="Enter CBR" oninput="updateMr()">
                             <span class="unit">%</span>
                         </div>
                     </div>
@@ -907,7 +918,7 @@
                     <div class="input-group">
                         <label for="mr">Resilient Modulus (Mr) - Auto Calculated</label>
                         <div class="input-wrapper">
-                            <input type="number" id="mr" step="100" value="15000" placeholder="Auto calculated" readonly>
+                            <input type="number" id="mr" step="100" value="" placeholder="Auto calculated" readonly>
                             <span class="unit">psi</span>
                         </div>
                         <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
@@ -918,7 +929,7 @@
                     <div class="input-group">
                         <label for="esals">Equivalent Single Axle Loads (ESALs)</label>
                         <div class="input-wrapper">
-                            <input type="number" id="esals" step="1000" value="5068074" placeholder="Enter ESALs">
+                            <input type="number" id="esals" step="1000" value="" placeholder="Enter ESALs" oninput="calculate()">
                         </div>
                     </div>
 
@@ -1368,7 +1379,42 @@
         }
 
         window.onload = function() {
-            calculate();
+            // Ensure all default values are set (except CBR and ESALs which must be entered manually)
+            document.getElementById('zr').value = '-1.282';
+            document.getElementById('so').value = '0.45';
+            document.getElementById('deltaPSI').value = '2.2';
+            document.getElementById('cbr').value = '';
+            document.getElementById('mr').value = '';
+            document.getElementById('esals').value = '';
+            document.getElementById('snRequired').value = '3';
+            document.getElementById('snSlider').value = '3';
+            
+            // Set layer defaults
+            document.getElementById('layer1a').value = '0.42';
+            document.getElementById('layer1m').value = '1.0';
+            document.getElementById('layer1mr').value = '400000';
+            document.getElementById('layer1mm').value = '125';
+            document.getElementById('layer1inch').value = '4.921';
+            
+            document.getElementById('layer2a').value = '0.135';
+            document.getElementById('layer2m').value = '0.9';
+            document.getElementById('layer2cbr').value = '0.8';
+            document.getElementById('layer2mm').value = '100';
+            document.getElementById('layer2inch').value = '3.937';
+            
+            document.getElementById('layer3a').value = '0.109';
+            document.getElementById('layer3m').value = '0.9';
+            document.getElementById('layer3cbr').value = '0.3';
+            document.getElementById('layer3mm').value = '150';
+            document.getElementById('layer3inch').value = '5.906';
+            
+            document.getElementById('layer4a').value = '0.1';
+            document.getElementById('layer4m').value = '1.35';
+            document.getElementById('layer4cbr').value = '25';
+            document.getElementById('layer4mm').value = '0';
+            document.getElementById('layer4inch').value = '0.000';
+            
+            // Don't run calculation initially - wait for user to enter CBR and ESALs
         };
     </script>
 </body>
