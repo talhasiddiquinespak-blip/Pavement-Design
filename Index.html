@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AASHTO Pavement Design - Professional Engineering Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a4d2e;
+            --secondary: #4f772d;
+            --accent: #90a955;
+            --bg-dark: #0f1419;
+            --bg-card: #1a1f26;
+            --text-light: #e8eaed;
+            --text-muted: #9ca3af;
+            --border: #2d3748;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(26, 31, 38, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 119, 45, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #1a4d2e 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(144,169,85,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--accent) 0%, #c8d5a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 119, 45, 0.5);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .secondary-btn:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--accent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+        }
+
+        /* Blog Section */
+        .blog {
+            background: var(--bg-card);
+            padding: 5rem 2rem;
+        }
+
+        .blog-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-tag {
+            display: inline-block;
+            background: rgba(144, 169, 85, 0.2);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .blog-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--secondary);
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(144, 169, 85, 0.1);
+        }
+
+        input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        input:read-only {
+            background: var(--bg-dark);
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .unit {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 119, 45, 0.4);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .results-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .result-item {
+            background: var(--bg-dark);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-match {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .status-adjust {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .layers-card {
+            grid-column: 1 / -1;
+        }
+
+        .layers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .layer-item {
+            background: var(--bg-dark);
+            padding: 1.25rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .layer-name {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .layer-thickness {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .layer-unit {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .layer-contribution {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .layer-contribution-value {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .info-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--bg-dark);
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .pavement-type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .type-option {
+            padding: 1rem;
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .type-option:hover {
+            border-color: var(--accent);
+        }
+
+        .type-option.active {
+            border-color: var(--accent);
+            background: rgba(144, 169, 85, 0.1);
+        }
+
+        .type-option input[type="radio"] {
+            display: none;
+        }
+
+        .type-label {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .layer-input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .layer-config {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .layer-header {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .layer-fields {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .credit {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .credit strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .project-info {
+                grid-template-columns: 1fr;
+            }
+
+            .pavement-type-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">AASHTO Design</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#blog">Resources</a></li>
+                <li><a href="#calculator" class="cta-button">Launch Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Professional Pavement Design Calculator</h1>
+            <p>Advanced AASHTO pavement structural analysis for flexible pavement systems. Calculate structural numbers, optimize layer thicknesses, and ensure design adequacy with precision.</p>
+            <div class="hero-buttons">
+                <a href="#calculator" class="primary-btn">Start Designing →</a>
+                <a href="#features" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Powerful Engineering Tools</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>AASHTO Compliance</h3>
+                <p>Full implementation of AASHTO pavement design methodology with precise structural number calculations and reliability analysis.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Real-Time Calculations</h3>
+                <p>Instant computation of LHS/RHS balance, structural numbers, and design adequacy as you adjust parameters.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏗️</div>
+                <h3>Flexible Layer Design</h3>
+                <p>Support for both asphalt concrete and concrete pavers with customizable layer properties, thicknesses, and coefficients.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>CBR-Based Analysis</h3>
+                <p>Automatic resilient modulus calculation from CBR values with support for multiple subgrade conditions.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📐</div>
+                <h3>Layer Optimization</h3>
+                <p>Interactive thickness adjustment with immediate SN contribution feedback for each pavement layer.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Design Verification</h3>
+                <p>Built-in checks for equation balance and design adequacy to ensure structural integrity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="blog-container">
+            <h2 class="section-title">Road Design Resources</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">🛣️</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Fundamentals</span>
+                        <h3>Understanding AASHTO Pavement Design</h3>
+                        <p>The AASHTO method is the most widely used empirical design procedure for flexible pavements. It considers traffic loading, environmental conditions, and material properties to determine required structural numbers.</p>
+                        <a href="#" class="read-more">Read more →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">📊</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Technical</span>
+                        <h3>Structural Number Calculation</h3>
+                        <p>The structural number (SN) represents the overall structural capacity of a pavement. It's calculated as the sum of layer coefficients multiplied by drainage factors and thicknesses: SN = Σ(a × m × D).</p>
+                        <a href="#" class="read-more">Read more →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🔬</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Materials</span>
+                        <h3>Layer Coefficients & Drainage</h3>
+                        <p>Layer coefficients (a) reflect material strength - asphalt typically ranges from 0.35-0.44, while base courses are 0.10-0.14. Drainage coefficients (m) account for moisture conditions and drainage quality.</p>
+                        <a href="#" class="read-more">Read more →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🚧</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Best Practices</span>
+                        <h3>Subgrade Characterization</h3>
+                        <p>Accurate subgrade assessment through CBR testing is critical. The resilient modulus (Mr) can be estimated as CBR × 1500 psi for fine-grained soils, providing the foundation for pavement thickness design.</p>
+                        <a href="#" class="read-more">Read more →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">📈</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Analysis</span>
+                        <h3>Traffic Loading & ESALs</h3>
+                        <p>Equivalent Single Axle Loads (ESALs) convert mixed traffic into an equivalent number of standard 18-kip axle loads. This crucial parameter drives the required structural capacity over the design life.</p>
+                        <a href="#" class="read-more">Read more →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">🎯</div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Design</span>
+                        <h3>Reliability & Serviceability</h3>
+                        <p>Design reliability (typically 85-99.9%) accounts for uncertainty in traffic and material properties. The change in serviceability (ΔPSI) from initial to terminal conditions defines acceptable pavement deterioration.</p>
+                        <a href="#" class="read-more">Read more →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <header>
+                <h1>AASHTO Pavement Design Calculator</h1>
+                <p class="subtitle">STRUCTURAL NUMBER ANALYSIS & LAYER DESIGN</p>
+                
+                <div class="project-info">
+                    <div>
+                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Road Name / Project</label>
+                        <input type="text" id="roadName" placeholder="Enter road name" 
+                            style="width: 100%; padding: 0.5rem 0.75rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; color: var(--text-light); font-size: 0.95rem;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">Performance Period (years)</label>
+                        <input type="number" id="performancePeriod" placeholder="15" value="15"
+                            style="width: 100%; padding: 0.5rem 0.75rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; color: var(--text-light); font-size: 0.95rem;">
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard">
+                <!-- Input Parameters Card -->
+                <div class="card">
+                    <h2 class="card-title">Input Parameters</h2>
+                    
+                    <div class="input-group">
+                        <label for="zr">Standard Normal Deviate (Zr)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="zr" step="0.001" value="-1.282" placeholder="Enter Zr">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="so">Overall Standard Deviation (So)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="so" step="0.01" value="0.45" placeholder="Enter So">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="deltaPSI">Change in Serviceability (ΔPSI)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="deltaPSI" step="0.1" value="2.2" placeholder="Enter ΔPSI">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cbr">CBR (California Bearing Ratio)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="cbr" step="0.1" value="10" placeholder="Enter CBR" oninput="updateMr()">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="mr">Resilient Modulus (Mr) - Auto Calculated</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="mr" step="100" value="15000" placeholder="Auto calculated" readonly>
+                            <span class="unit">psi</span>
+                        </div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+                            Formula: Mr = CBR × 1500
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="esals">Equivalent Single Axle Loads (ESALs)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="esals" step="1000" value="5068074" placeholder="Enter ESALs">
+                        </div>
+                    </div>
+
+                    <button class="calculate-btn" onclick="calculate()">Calculate Design</button>
+
+                    <div class="info-text">
+                        💡 Enter your parameters above, then adjust SN below to balance the equation
+                    </div>
+                </div>
+
+                <!-- Results Card -->
+                <div class="card">
+                    <h2 class="card-title">Equation Balance</h2>
+                    
+                    <div style="background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 2px solid var(--accent);">
+                        <label style="display: block; margin-bottom: 1rem; color: var(--accent); font-weight: 600; font-size: 1rem;">
+                            Adjust SN to Balance Equation
+                        </label>
+                        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            Uses Zr, So, ΔPSI, Mr, and ESALs from Input Parameters above ⬆️
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <input 
+                                type="range" 
+                                id="snSlider" 
+                                min="1" 
+                                max="8" 
+                                step="0.01" 
+                                value="3"
+                                style="flex: 1; height: 8px; background: var(--border); border-radius: 5px; outline: none; cursor: pointer;"
+                                oninput="updateSN(this.value)"
+                            >
+                            <input 
+                                type="number" 
+                                id="snRequired" 
+                                step="0.01" 
+                                value="3"
+                                style="width: 100px; text-align: center; font-size: 1.25rem; font-weight: 700;"
+                                oninput="updateSN(this.value)"
+                            >
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
+                            💡 Move the slider or type a value to find where LHS = RHS
+                        </div>
+                    </div>
+
+                    <div id="results" class="results-grid">
+                        <div class="empty-state">
+                            Click "Calculate Design" to see results
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer Design Card -->
+                <div class="card layers-card">
+                    <h2 class="card-title">Pavement Layer Design</h2>
+                    
+                    <!-- Pavement Type Selection -->
+                    <div class="input-group">
+                        <label>Select Pavement Type</label>
+                        <div class="pavement-type-selector">
+                            <label class="type-option active" id="asphaltOption">
+                                <input type="radio" name="pavementType" value="asphalt" checked onchange="updatePavementType('asphalt')">
+                                <div class="type-label">🛣️ Asphalt Concrete</div>
+                            </label>
+                            <label class="type-option" id="concreteOption">
+                                <input type="radio" name="pavementType" value="concrete" onchange="updatePavementType('concrete')">
+                                <div class="type-label">🏗️ Concrete Pavers</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Layer Configuration -->
+                    <div class="layer-input-grid">
+                        <!-- Surface Layer -->
+                        <div class="layer-config">
+                            <div class="layer-header">
+                                <span id="surfaceLayerName">Asphalt Concrete</span>
+                            </div>
+                            <div class="layer-fields">
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Coefficient (a)</label>
+                                        <input type="number" id="layer1a" value="0.42" step="0.001" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Drainage (m)</label>
+                                        <input type="number" id="layer1m" value="1.0" step="0.1" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.8rem;">Resilient Modulus (Mr)</label>
+                                    <input type="number" id="layer1mr" value="400000" step="1000" oninput="calculate()" style="font-size: 0.9rem;">
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">psi</div>
+                                </div>
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (mm)</label>
+                                        <input type="number" id="layer1mm" value="125" step="1" oninput="updateLayerInches(1)" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (inches)</label>
+                                        <input type="number" id="layer1inch" value="4.921" step="0.001" readonly style="font-size: 0.9rem; font-weight: 600; color: var(--accent);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Base Layer -->
+                        <div class="layer-config">
+                            <div class="layer-header">
+                                <span>Base</span>
+                            </div>
+                            <div class="layer-fields">
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Coefficient (a)</label>
+                                        <input type="number" id="layer2a" value="0.135" step="0.001" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Drainage (m)</label>
+                                        <input type="number" id="layer2m" value="0.9" step="0.1" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.8rem;">Subgrade CBR (%)</label>
+                                    <input type="number" id="layer2cbr" value="0.8" step="0.1" oninput="updateLayerMr(2)" style="font-size: 0.9rem;">
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">% of Subgrade CBR</div>
+                                </div>
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (mm)</label>
+                                        <input type="number" id="layer2mm" value="100" step="1" oninput="updateLayerInches(2)" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (inches)</label>
+                                        <input type="number" id="layer2inch" value="3.937" step="0.001" readonly style="font-size: 0.9rem; font-weight: 600; color: var(--accent);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subbase Layer -->
+                        <div class="layer-config">
+                            <div class="layer-header">
+                                <span>Subbase</span>
+                            </div>
+                            <div class="layer-fields">
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Coefficient (a)</label>
+                                        <input type="number" id="layer3a" value="0.109" step="0.001" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Drainage (m)</label>
+                                        <input type="number" id="layer3m" value="0.9" step="0.1" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.8rem;">Subgrade CBR (%)</label>
+                                    <input type="number" id="layer3cbr" value="0.3" step="0.1" oninput="updateLayerMr(3)" style="font-size: 0.9rem;">
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">% of Subgrade CBR</div>
+                                </div>
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (mm)</label>
+                                        <input type="number" id="layer3mm" value="150" step="1" oninput="updateLayerInches(3)" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (inches)</label>
+                                        <input type="number" id="layer3inch" value="5.906" step="0.001" readonly style="font-size: 0.9rem; font-weight: 600; color: var(--accent);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Improved Subgrade Layer (Optional) -->
+                        <div class="layer-config">
+                            <div class="layer-header">
+                                <span>Improved Subgrade</span>
+                                <input type="checkbox" id="layer4enabled" onchange="toggleLayer4()" style="width: auto;">
+                            </div>
+                            <div class="layer-fields" id="layer4fields" style="opacity: 0.5; pointer-events: none;">
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Coefficient (a)</label>
+                                        <input type="number" id="layer4a" value="0.1" step="0.001" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Drainage (m)</label>
+                                        <input type="number" id="layer4m" value="1.35" step="0.1" oninput="calculate()" style="font-size: 0.9rem;">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.8rem;">CBR Value</label>
+                                    <input type="number" id="layer4cbr" value="25" step="1" oninput="calculate()" style="font-size: 0.9rem;">
+                                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">Direct CBR value</div>
+                                </div>
+                                <div class="field-row">
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (mm)</label>
+                                        <input type="number" id="layer4mm" value="0" step="1" oninput="updateLayerInches(4)" style="font-size: 0.9rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem;">Thickness (inches)</label>
+                                        <input type="number" id="layer4inch" value="0.000" step="0.001" readonly style="font-size: 0.9rem; font-weight: 600; color: var(--accent);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title" style="margin-top: 2rem;">SN Contribution Summary</h2>
+                    <div id="layers" class="layers-grid">
+                        <div class="empty-state">
+                            Results will appear here after calculation
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 AASHTO Pavement Design Calculator. All rights reserved.</p>
+            <div class="credit">
+                Created by <strong>Engr. M. Ameen</strong>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentPavementType = 'asphalt';
+        let layer4Active = false;
+
+        function updatePavementType(type) {
+            currentPavementType = type;
+            
+            document.getElementById('asphaltOption').classList.toggle('active', type === 'asphalt');
+            document.getElementById('concreteOption').classList.toggle('active', type === 'concrete');
+            
+            if (type === 'asphalt') {
+                document.getElementById('surfaceLayerName').textContent = 'Asphalt Concrete';
+                document.getElementById('layer1a').value = '0.42';
+                document.getElementById('layer1mr').value = '400000';
+                document.getElementById('layer1mm').value = '125';
+            } else {
+                document.getElementById('surfaceLayerName').textContent = 'Concrete Pavers';
+                document.getElementById('layer1a').value = '0.44';
+                document.getElementById('layer1mr').value = '400000';
+                document.getElementById('layer1mm').value = '105';
+            }
+            
+            updateLayerInches(1);
+            calculate();
+        }
+
+        function toggleLayer4() {
+            layer4Active = document.getElementById('layer4enabled').checked;
+            const fields = document.getElementById('layer4fields');
+            
+            if (layer4Active) {
+                fields.style.opacity = '1';
+                fields.style.pointerEvents = 'auto';
+            } else {
+                fields.style.opacity = '0.5';
+                fields.style.pointerEvents = 'none';
+                document.getElementById('layer4mm').value = '0';
+                updateLayerInches(4);
+            }
+            
+            calculate();
+        }
+
+        function updateMr() {
+            const cbr = parseFloat(document.getElementById('cbr').value);
+            if (!isNaN(cbr)) {
+                const mr = cbr * 1500;
+                document.getElementById('mr').value = mr;
+                calculate();
+            }
+        }
+
+        function updateLayerMr(layerNum) {
+            calculate();
+        }
+
+        function updateLayerInches(layerNum) {
+            const mm = parseFloat(document.getElementById(`layer${layerNum}mm`).value);
+            const inches = mm / 25.4;
+            document.getElementById(`layer${layerNum}inch`).value = inches.toFixed(3);
+            calculate();
+        }
+
+        function updateSN(value) {
+            document.getElementById('snSlider').value = value;
+            document.getElementById('snRequired').value = value;
+            calculate();
+        }
+
+        function calculate() {
+            const Zr = parseFloat(document.getElementById('zr').value);
+            const So = parseFloat(document.getElementById('so').value);
+            const deltaPSI = parseFloat(document.getElementById('deltaPSI').value);
+            const SN = parseFloat(document.getElementById('snRequired').value);
+            const Mr = parseFloat(document.getElementById('mr').value);
+            const ESALs = parseFloat(document.getElementById('esals').value);
+
+            if (isNaN(Zr) || isNaN(So) || isNaN(deltaPSI) || isNaN(SN) || isNaN(Mr) || isNaN(ESALs)) {
+                return;
+            }
+
+            const RHS = Math.log10(ESALs);
+
+            const term1 = Zr * So;
+            const term2 = 9.36 * Math.log10(SN + 1);
+            const term3 = -0.2;
+            const term4 = (Math.log10(deltaPSI / (4.2 - 1.5))) / (0.4 + (1094 / Math.pow(SN + 1, 5.19)));
+            const term5 = 2.32 * Math.log10(Mr);
+            const term6 = -8.07;
+            
+            const LHS = term1 + term2 + term3 + term4 + term5 + term6;
+            const difference = Math.abs(LHS - RHS);
+            const isMatch = difference < 0.01;
+
+            const layerNames = [
+                currentPavementType === 'asphalt' ? 'Asphalt Concrete' : 'Concrete Pavers',
+                'Base',
+                'Subbase'
+            ];
+            
+            const layers = [];
+            
+            for (let i = 1; i <= 3; i++) {
+                const coefficient = parseFloat(document.getElementById(`layer${i}a`).value);
+                const drainage = parseFloat(document.getElementById(`layer${i}m`).value);
+                const thickness = parseFloat(document.getElementById(`layer${i}inch`).value);
+                const snContribution = coefficient * drainage * thickness;
+                
+                layers.push({
+                    name: layerNames[i-1],
+                    coefficient: coefficient,
+                    drainage: drainage,
+                    thickness: thickness,
+                    snContribution: snContribution
+                });
+            }
+
+            if (layer4Active) {
+                const coefficient = parseFloat(document.getElementById('layer4a').value);
+                const drainage = parseFloat(document.getElementById('layer4m').value);
+                const thickness = parseFloat(document.getElementById('layer4inch').value);
+                const snContribution = coefficient * drainage * thickness;
+                
+                if (thickness > 0) {
+                    layers.push({
+                        name: 'Improved Subgrade',
+                        coefficient: coefficient,
+                        drainage: drainage,
+                        thickness: thickness,
+                        snContribution: snContribution
+                    });
+                }
+            }
+
+            const snDesign = layers.reduce((sum, layer) => sum + layer.snContribution, 0);
+            const snStatus = snDesign >= SN;
+
+            displayResults(RHS, LHS, difference, isMatch, SN, snDesign, snStatus);
+            displayLayers(layers, snDesign);
+        }
+
+        function displayResults(RHS, LHS, difference, isMatch, snRequired, snDesign, snStatus) {
+            const resultsDiv = document.getElementById('results');
+            
+            resultsDiv.innerHTML = `
+                <div class="result-item">
+                    <span class="result-label">RHS (Log₁₀ ESALs)</span>
+                    <span class="result-value">${RHS.toFixed(4)}</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label">LHS (Calculated)</span>
+                    <span class="result-value">${LHS.toFixed(4)}</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label">Difference (|LHS - RHS|)</span>
+                    <span class="result-value" style="color: ${isMatch ? 'var(--success)' : 'var(--warning)'}">
+                        ${difference.toFixed(4)}
+                    </span>
+                </div>
+                
+                <div class="result-item" style="background: ${isMatch ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)'}">
+                    <span class="result-label">Balance Status</span>
+                    <span class="status-badge ${isMatch ? 'status-match' : 'status-adjust'}">
+                        ${isMatch ? '✓ BALANCED' : '⚠ ADJUST SN'}
+                    </span>
+                </div>
+                
+                <div class="result-item" style="border-left-color: var(--secondary); margin-top: 1rem;">
+                    <span class="result-label">SN Required (from balance)</span>
+                    <span class="result-value">${snRequired.toFixed(3)}</span>
+                </div>
+                
+                <div class="result-item" style="border-left-color: var(--secondary)">
+                    <span class="result-label">SN Design (from layers)</span>
+                    <span class="result-value">${snDesign.toFixed(3)}</span>
+                </div>
+                
+                <div class="result-item" style="border-left-color: var(--secondary); background: ${snStatus ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)'}">
+                    <span class="result-label">Design Adequacy</span>
+                    <span class="status-badge ${snStatus ? 'status-match' : 'status-adjust'}">
+                        ${snStatus ? '✓ SUFFICIENT' : '⚠ INCREASE THICKNESS'}
+                    </span>
+                </div>
+            `;
+        }
+
+        function displayLayers(layers, totalSN) {
+            const layersDiv = document.getElementById('layers');
+            
+            layersDiv.innerHTML = layers.map(layer => `
+                <div class="layer-item">
+                    <div class="layer-name">${layer.name}</div>
+                    <div class="layer-thickness">${layer.thickness.toFixed(3)}</div>
+                    <div class="layer-unit">inches</div>
+                    <div class="layer-contribution">
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                            ${layer.coefficient} × ${layer.drainage} × ${layer.thickness.toFixed(3)}
+                        </div>
+                        SN: <span class="layer-contribution-value">${layer.snContribution.toFixed(4)}</span>
+                    </div>
+                </div>
+            `).join('') + `
+                <div class="layer-item" style="background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%); border: none;">
+                    <div class="layer-name" style="color: white;">Total SN Design</div>
+                    <div class="layer-thickness" style="color: white;">${totalSN.toFixed(4)}</div>
+                    <div class="layer-unit" style="color: rgba(255,255,255,0.7);">structural number</div>
+                    <div class="layer-contribution" style="color: rgba(255,255,255,0.8); border-top-color: rgba(255,255,255,0.3);">
+                        Sum of all layer contributions
+                    </div>
+                </div>
+            `;
+        }
+
+        window.onload = function() {
+            calculate();
+        };
+    </script>
+</body>
+</html>
